@@ -253,14 +253,14 @@
       <h1 class="text-center fw-normal wow fadeInUp">See my work</h1>
       <div class="filterable-button py-3 wow fadeInUp" data-toggle="selected">
         <!-- <button class="btn btn-theme-outline selected" data-filter="*">All</button> -->
-         <button class="btn btn-theme-outline selected" data-filter="*" id="filter-all">All</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".html">HTML</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".js">JavaScript</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".wordpress">WordPress</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".bootstrap">Bootstrap</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".illustrator">Illustrator</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".photoshop">Photoshop</button>
-         <button class="btn btn-theme-outline filter-btn" data-filter=".figma">Figma</button>
+         <button class="btn btn-theme-outline selected" data-filter="*" >All</button>
+         <button class="btn btn-theme-outline " data-filter=".html">HTML</button>
+         <button class="btn btn-theme-outline " data-filter=".js">JavaScript</button>
+         <button class="btn btn-theme-outline " data-filter=".wordpress">WordPress</button>
+         <button class="btn btn-theme-outline " data-filter=".bootstrap">Bootstrap</button>
+         <button class="btn btn-theme-outline " data-filter=".illustrator">Illustrator</button>
+         <button class="btn btn-theme-outline " data-filter=".photoshop">Photoshop</button>
+         <button class="btn btn-theme-outline " data-filter=".figma">Figma</button>
          <!-- <button class="btn btn-theme-outline" data-filter=".template">CSS</button> -->
       </div>
 
@@ -336,8 +336,7 @@
           </a>
         </div>
 
-    <div id="more-portfolio-items" style="display: none;">
-
+    
         <div class="grid-item illustrator">
            <a href="Brand Guigelines.pdf" target="_blank">
           <div class="img-place" data-src="../assets/img/work/work-4.jpg" >
@@ -422,12 +421,11 @@
           </div>
           </a>
         </div>
-        </div>
       </div>
-       <!-- End gridder -->
-  <div class="text-center mt-4">
-  <button id="showMoreBtn" class="btn btn-theme-outline">Show More</button>
+  </div>
 </div>
+       <!-- End gridder -->
+  
   <!-- Contact -->
   <div class="vg-page page-contact" id="contact">
     <div class="container-fluid">
@@ -566,65 +564,7 @@
 });
 
 
-   const showMoreBtn = document.getElementById("showMoreBtn");
-  const morePortfolioItems = document.getElementById("more-portfolio-items");
-  const filterButtons = document.querySelectorAll(".filter-btn");
-  const allGridItems = document.querySelectorAll(".grid-item");
-
-  // Function to filter items based on category
-  function filterItems(filter) {
-    allGridItems.forEach(item => {
-      if (filter === '*') {
-        item.style.display = 'block';
-      } else {
-        if (item.classList.contains(filter.slice(1))) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
-      }
-    });
-  }
-
-  // Handle Show More button click
-  showMoreBtn.addEventListener("click", function () {
-    if (morePortfolioItems.style.display === "none") {
-      morePortfolioItems.style.display = "block";
-      this.textContent = "Show Less";
-    } else {
-      morePortfolioItems.style.display = "none";
-      this.textContent = "Show More";
-      window.scrollTo({ top: document.getElementById("projects").offsetTop, behavior: 'smooth' });
-    }
-  });
-
-  // Handle filter button clicks
-  filterButtons.forEach((btn) => {
-    btn.addEventListener("click", function () {
-      const filter = btn.getAttribute("data-filter");
-
-      if (filter === "*") {
-        // Show all items (basic + hidden section)
-        filterItems("*");
-        showMoreBtn.style.display = "inline-block";
-        morePortfolioItems.style.display = "none"; // reset
-        showMoreBtn.textContent = "Show More";
-      } else {
-        // Show only matching items
-        filterItems(filter);
-        showMoreBtn.style.display = "none";
-        morePortfolioItems.style.display = "none";
-      }
-    });
-  });
-
-  // On load, reset to "All"
-  window.addEventListener("DOMContentLoaded", function () {
-    filterItems("*");
-    showMoreBtn.style.display = "inline-block";
-    morePortfolioItems.style.display = "none";
-  });
-
+ 
 
 </script>
 </body>
