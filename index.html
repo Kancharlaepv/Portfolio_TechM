@@ -79,6 +79,9 @@
       <h5 class="fw-normal">Welcome</h5>
       <h1 class="fw-light mb-4">I'm <b class="fg-theme">Kancharla</b>Eswar</h1>
       <div class="badge">UI/UX & Web Designer</div>
+       <!-- <a href="Eswar_FrontEnd Developer.pdf"  target="_blank"><div class="badge" style="margin-top: 10px;">Download CV</div></a> -->
+
+
     </div>
      <!-- End Caption header -->
     <div class="floating-button"><span class="ti-mouse"></span></div>
@@ -562,43 +565,66 @@
   });
 });
 
-  // Show More toggle
-  document.getElementById("showMoreBtn").addEventListener("click", function () {
-    var hiddenItems = document.getElementById("more-portfolio-items");
-    if (hiddenItems.style.display === "none") {
-      hiddenItems.style.display = "block";
+
+   const showMoreBtn = document.getElementById("showMoreBtn");
+  const morePortfolioItems = document.getElementById("more-portfolio-items");
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const allGridItems = document.querySelectorAll(".grid-item");
+
+  // Function to filter items based on category
+  function filterItems(filter) {
+    allGridItems.forEach(item => {
+      if (filter === '*') {
+        item.style.display = 'block';
+      } else {
+        if (item.classList.contains(filter.slice(1))) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      }
+    });
+  }
+
+  // Handle Show More button click
+  showMoreBtn.addEventListener("click", function () {
+    if (morePortfolioItems.style.display === "none") {
+      morePortfolioItems.style.display = "block";
       this.textContent = "Show Less";
     } else {
-      hiddenItems.style.display = "none";
+      morePortfolioItems.style.display = "none";
       this.textContent = "Show More";
       window.scrollTo({ top: document.getElementById("projects").offsetTop, behavior: 'smooth' });
     }
   });
 
-  // Show More button visibility based on filter
-  const filterButtons = document.querySelectorAll(".filter-btn");
-  const showMoreBtn = document.getElementById("showMoreBtn");
-  const morePortfolioItems = document.getElementById("more-portfolio-items");
-
+  // Handle filter button clicks
   filterButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", function () {
       const filter = btn.getAttribute("data-filter");
 
       if (filter === "*") {
+        // Show all items (basic + hidden section)
+        filterItems("*");
         showMoreBtn.style.display = "inline-block";
-      } else {
-        showMoreBtn.style.display = "none";
-        morePortfolioItems.style.display = "none"; // Hide extra items when switching filter
+        morePortfolioItems.style.display = "none"; // reset
         showMoreBtn.textContent = "Show More";
+      } else {
+        // Show only matching items
+        filterItems(filter);
+        showMoreBtn.style.display = "none";
+        morePortfolioItems.style.display = "none";
       }
     });
   });
 
-  // By default hide "more-portfolio-items" and show the button
+  // On load, reset to "All"
   window.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("more-portfolio-items").style.display = "none";
-    showMoreBtn.style.display = "inline-block"; // Only show if 'All' is default
+    filterItems("*");
+    showMoreBtn.style.display = "inline-block";
+    morePortfolioItems.style.display = "none";
   });
+
 
 </script>
 </body>
